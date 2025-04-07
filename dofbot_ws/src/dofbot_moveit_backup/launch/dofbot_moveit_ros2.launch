@@ -1,0 +1,32 @@
+#include <rclcpp/rclcpp.hpp>
+
+int main(int argc, char **argv)
+{
+  // Initialize the RCL C++ wrapper for handling ROS2 communication.
+  rclcpp::init(argc, argv);
+
+  // Create a node handle which allows us to interact with this node.
+  auto node = std::make_shared<rclcpp::Node>("minimal_node");
+
+  // Create a publisher that will send data to another topic.
+  // Here we create a Publisher for a std_msgs/String message on the topic "topic1".
+  rclcpp::Publisher<rclcpp::tcpippi::Topic<std_msgs::msg::String>>::SharedPtr publisher = node->create_publisher<std_msgs::msg::String>("topic1", rclcpp::QoS(10));
+
+  // Create a timer callback that will be called every 5 seconds.
+  auto callback = [node, publisher]() {
+    std_msgs::msg::String msg;
+    msg.data = "Hello, ROS2!";
+    publisher->publish(msg);
+  };
+
+  // Create a timer to call the callback every 5 seconds.
+  auto timer = node->create_wall_timer(rclcpp::Duration(5.0), callback);
+
+  // Spin the node's event loop, processing incoming messages and calling publishers when needed.
+  rclcpp::spin(node);
+
+  // Shutdown ROS2 and cleanup resources.
+  rclcpp::shutdown();
+
+  return 0;
+}

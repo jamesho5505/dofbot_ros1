@@ -1,0 +1,13 @@
+
+[Unit]
+Description=yb-discover start service
+After=multi-user.target
+
+[Service]
+Type=idle
+User=root
+ExecStart=/bin/sh -c "python3 /home/jetbot/Arm/yb-discover.py"
+WorkingDirectory=/home/jetbot
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,44 @@
+# 編譯文件和臨時文件
+build/
+devel/
+logs/
+log/
+install/
+.catkin_workspace
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# ROS特定文件
+.ros/
+.catkin_tools/
+
+# 編輯器和IDE文件
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# 系統和用戶配置文件
+.bash_history
+.bashrc
+.config/
+.cache/
+.local/
+.profile
+.python_history
+.viminfo
+
+# 日誌文件
+*.log
+
+# 大型數據文件和模型
+*.dat
+*.bin
+*.weights
+*.pt
+
+# 嵌套的 git 倉庫
+.git/

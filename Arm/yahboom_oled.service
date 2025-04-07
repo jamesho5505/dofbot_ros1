@@ -1,0 +1,12 @@
+[Unit]
+Description=yahboom_oled
+After=multi-user.target
+
+[Service]
+Type=idle
+User=jetson
+ExecStart=/bin/sh -c "python3 /root/Arm/oled.py"
+WorkingDirectory=/root
+
+[Install]
+WantedBy=multi-user.target
